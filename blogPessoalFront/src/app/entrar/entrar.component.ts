@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
-import { UserLogin } from '../model/UserLogin';
+import { UserLogin } from './../model/UserLogin';
 import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
+import { environment } from './../../environments/environment.prod';
 
 @Component({
   selector: 'app-entrar',
@@ -12,7 +12,6 @@ import { AuthService } from '../service/auth.service';
 export class EntrarComponent implements OnInit {
 
   userLogin: UserLogin = new UserLogin()
-
   constructor(
     private auth: AuthService,
     private router: Router
@@ -21,9 +20,10 @@ export class EntrarComponent implements OnInit {
   ngOnInit(){
     window.scroll(0,0)
   }
-  
-  entrar(){
-    this.auth.entrar(this.userLogin).subscribe((resp: UserLogin) => {
+
+  entrar() {
+      this.auth.entrar(this.userLogin).subscribe({
+      next: (resp:UserLogin) => {
       this.userLogin = resp
 
       environment.token = this.userLogin.token
@@ -31,20 +31,18 @@ export class EntrarComponent implements OnInit {
       environment.foto = this.userLogin.foto
       environment.id = this.userLogin.id
 
-      console.log(environment.token)
+      console.log(environment.token);
+      console.log(environment.nome);
+      console.log(environment.foto);
+      console.log(environment.id);
 
-      console.log(environment.nome)
-
-      console.log(environment.foto)
-
-      console.log(environment.id)
-
-      this.router.navigate(['/inicio'])
-    }, erro =>{
-      if(erro.status == 500){
-        alert('Usuário ou senha estão incorretos!')
+      this.router.navigate(["/inicio"])
+      alert('Entre!')
+    }, error: erro =>{
+      if(erro.status == 500 || erro.status == 401) {
+        alert('ERRO! Informações Incorretas!')
       }
-    })
-  }
-
+    },
+  });
+}
 }

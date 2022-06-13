@@ -1,34 +1,32 @@
-ul.social-network
-{
+ul.social-network{
     list-style: none;
-    padding: 0;
+    padding: 0%;
 }
 
-ul.social-network li
-{
+ul.social-network li{
     display: inline;
-    margin: 0;
+    margin: 0%;
     padding: 5px;
 }
 
-.fa
-{
+.fa-brands{
     font-size: 35pt;
+    padding: 5px;
     color: white;
-    padding: 10px;
 }
 
-.fa-facebook-square:hover
-{
-    color:cornflowerblue;
+.fa-linkedin:hover{
+    color: rgb(58, 76, 180);
 }
 
-.fa-instagram:hover
-{
-    color: blueviolet;
+.fa-facebook-square:hover{
+    color: rgb(44, 44, 212);
 }
 
-.fa-linkedin-square:hover
-{
-    color: #0072b1;
+.fa-github-square:hover{
+    color: rgb(105, 106, 107);
+}
+
+.fontBlack{
+    color: black !important;
 }
